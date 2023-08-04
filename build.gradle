@@ -19,8 +19,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    runtimeOnly 'org.flywaydb:flyway-core'
     runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'org.postgresql:r2dbc-postgresql'
+    runtimeOnly 'org.springframework:spring-jdbc'
+
+    // Only on Apple Silicon. Why it's necessary: https://github.com/netty/netty/issues/11020
+    // runtimeOnly 'io.netty:netty-resolver-dns-native-macos:4.1.92.Final:osx-aarch_64'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
     testImplementation 'io.projectreactor:reactor-test'
