@@ -28,11 +28,11 @@ public class OrderService {
             //return Mono.just(buildRejectedOrder(isbn,quantity)).flatMap(orderRepository::save);
     }
 
-    private static Order buildAcceptOrder(Book book, int quantity) {
+    public static Order buildAcceptOrder(Book book, int quantity) {
         return Order.of(book.isbn(),book.title()+" - "+book.author(),book.price(),quantity,OrderStatus.ACCEPTED);
     }
 
-    private static Order buildRejectedOrder(
+    public static Order buildRejectedOrder(
             String bookIsbn, int quantity
     ) {
         return Order.of(bookIsbn,null, null, quantity, OrderStatus.REJECTED);
