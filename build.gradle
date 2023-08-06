@@ -60,6 +60,25 @@ dependencyManagement {
     }
 }
 
+bootBuildImage {
+    imageName = "${project.name}"
+    environment = ["BP_JVM_VERSION": "17.*"]
+
+    docker {
+        publishRegistry {
+            username = project.findProperty("registryUsername")
+            password = project.findProperty("registryToken")
+            url = project.findProperty("registryUrl")
+        }
+    }
+
+//    if (System.getProperty( "os.arch" ).toLowerCase().startsWith('aarch')) {
+//        // This builder is only for ARM64 systems.
+//        // For more info: https://github.com/thomasvitale/paketo-arm64
+//        builder = "ghcr.io/thomasvitale/java-builder-arm64"
+//    }
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
